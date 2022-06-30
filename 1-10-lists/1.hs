@@ -11,7 +11,7 @@ Example in Haskell:
 myLast :: [a] -> a
 myLast [x] = x
 myLast (x:xs) = myLast xs
--- Ideally there would also be a match for [] here
+-- non-exhaustive for []
 
 main :: IO ()
 main = putStrLn [myLast "Abc"]

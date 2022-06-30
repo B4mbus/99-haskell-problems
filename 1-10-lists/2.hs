@@ -12,7 +12,7 @@ Example in Haskell:
 myButLast :: [a] -> a
 myButLast [x, y] = x
 myButLast (x:y:xs) = myButLast $ y : xs
--- Ideally there would also be a match for [] here
+-- non-exhaustive for []
 
 main :: IO ()
 main = putStrLn [myButLast "Abc"]
