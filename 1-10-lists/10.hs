@@ -18,5 +18,10 @@ encode :: Eq a => [a] -> [(Int, a)]
 encode xs = f <$> pack xs where
   f y@ys = (length ys, y)
 
+{- An even shorter version: -}
+-- encode :: Eq a => [a] -> [(Int, a)]
+-- encode xs@(x:_) = (length first, x) : encode xs where
+--   (first, rest) = span (==x) xs
+
 main :: IO ()
 main = print $ encode "aaaaaabbbbccc"
