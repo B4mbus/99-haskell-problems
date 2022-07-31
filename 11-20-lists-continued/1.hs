@@ -15,10 +15,9 @@ data EncodedElem a = Multiple Int a | Single a deriving(Show)
 
 encodeModified :: Eq a => [a] -> [EncodedElem a]
 encodeModified [] = []
-encodeModified xs@(x:_) = elem : encodeModified (snd (splitAt firstLen xs)) where
-    (first, rest) = span (== x) xs
-    firstLen = length first
-    elem = if firstLen == 1 then Single x else Multiple firstLen x
+encodeModified xs@(x:_) = elem : encodeModified (drop firstLen xs) where
+    firstLen = length $ takeWhile (== x) xs
+    elem = (if firstLen == 1 then Single else Multiple firstLen) x
 
 main :: IO ()
 main = print $ encodeModified "aaaabccaadeeee"
